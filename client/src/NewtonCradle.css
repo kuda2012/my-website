@@ -1,0 +1,90 @@
+.cradle-wrapper {
+  position: relative;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 40px;
+}
+
+.beam {
+  width: 320px;
+  height: 8px;
+  background-color: #ffffff;
+  margin-bottom: 0px;
+  z-index: 2;
+}
+
+.cradle {
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+  position: relative;
+  top: -10px;
+}
+
+.cradle-unit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.string {
+  width: 4px;
+  height: 80px;
+  color: white;
+  background-color: #ffffff;
+  position: relative;
+  z-index: 1;
+}
+
+.ball {
+  width: 50px;
+  height: 50px;
+  background-color: #070a5d;
+  border-radius: 50%;
+  margin-top: -2px;
+  color: white;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Animate outer balls */
+.ball-0 {
+  animation: swing-left 2s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+.ball-5 {
+  animation: swing-right 2s ease-in-out infinite;
+  animation-delay: 1s;
+  transform-origin: top center;
+}
+
+@keyframes swing-left {
+  0% {
+    transform: rotate(45deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(45deg);
+  }
+}
+
+@keyframes swing-right {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(-45deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
