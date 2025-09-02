@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 // Navbar.jsx
 export default function Navbar() {
@@ -8,14 +8,24 @@ export default function Navbar() {
         {/* <h1 className="text-xl font-bold">Kuda</h1> */}
         <ul className="flex space-x-6">
           <li>
-            <a href="/" className="hover:text-gray-300">
+            <NavLink
+              to="/"
+              className={({ isActive }) =>
+                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+              }
+            >
               🏠
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/about" className="hover:text-gray-300">
+            <NavLink
+              to="/about"
+              className={({ isActive }) =>
+                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+              }
+            >
               About
-            </a>
+            </NavLink>
           </li>
           <li>
             <a
@@ -28,19 +38,34 @@ export default function Navbar() {
             </a>
           </li>
           <li>
-            <a href="/thoughts" className="hover:text-gray-300">
+            <NavLink
+              to="/thoughts"
+              className={({ isActive }) =>
+                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+              }
+            >
               Thoughts
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="future-projects" className="hover:text-gray-300">
+            <NavLink
+              to="/future-projects"
+              className={({ isActive }) =>
+                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+              }
+            >
               Future projects
-            </a>
+            </NavLink>
           </li>
           <li>
-            <a href="/contact" className="hover:text-gray-300">
+            <NavLink
+              to="/contact"
+              className={({ isActive }) =>
+                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+              }
+            >
               Contact
-            </a>
+            </NavLink>
           </li>
         </ul>
       </div>
