@@ -1,0 +1,57 @@
+.wave-title {
+  font-size: 1rem;
+  font-weight: bold;
+  color: yellow;
+  text-shadow: 2px 2px 2px black;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* .wave-title span {
+  display: inline-block;
+  animation: wave 3s infinite;
+} */
+
+/* @keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-10px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  60% {
+    transform: translateY(5px);
+  }
+  80% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+} */
+
+.wave-title span {
+  display: inline-block;
+  animation: wave 1.5s linear infinite;
+}
+@keyframes wave {
+  0% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
