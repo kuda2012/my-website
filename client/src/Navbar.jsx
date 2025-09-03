@@ -3,19 +3,19 @@ import { NavLink } from "react-router-dom";
 // Navbar.jsx
 export default function Navbar() {
   return (
-    <nav className="w-full bg-gray-800 text-white">
+    <nav className="w-full bg-gray-800 text-white rounded-lg">
       <div className="flex justify-between items-center px-6 py-4">
         {/* <h1 className="text-xl font-bold">Kuda</h1> */}
         <ul className="flex space-x-6">
           <li>
-            {/* <NavLink
+            <NavLink
               to="/"
               className={({ isActive }) =>
                 `hover:text-gray-300 ${isActive ? "underline" : ""}`
               }
             >
               🏠
-            </NavLink> */}
+            </NavLink>
           </li>
           <li>
             <NavLink

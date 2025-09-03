@@ -34,10 +34,10 @@ function App() {
         speed={190}
       />
       {/* Spacer so content doesn't hide under fixed bar */}
-      <div style={{ height: "44px" }} />
+      {/* <div style={{ height: "44px" }} /> */}
       <div
         id="app"
-        className="flex flex-col items-center justify-center space-y-4"
+        className={`flex flex-col items-center justify-center space-y-7 ${isHome ? "mt-24" : "mt-0"} mr-5`}
       >
         {isHome ? (
           <>
@@ -46,14 +46,18 @@ function App() {
             ) : (
               <WaveTitle key={waveKey} text="Kuda" />
             )}
-            <img src="/selfie.jpeg" alt="Logo" className="w-64 h-90" />
+            <img
+              src="/selfie.jpeg"
+              alt="Logo"
+              className="w-64 h-90 rounded-md"
+            />
             <Navbar />
           </>
         ) : (
           <Link
             to="/"
             aria-label="Back to home"
-            className="fixed top-8 left-3 text-5xl leading-none select-none"
+            className="fixed top-8 left-3 text-5xl leading-none select-none text-gray-700 hover:text-gray-600"
           >
             ←
           </Link>

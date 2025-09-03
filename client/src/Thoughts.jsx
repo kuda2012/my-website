@@ -6,25 +6,19 @@ function Thoughts() {
   ];
   return (
     <>
-      {" "}
-      <div>
-        <a
-          href="https://x.com/syncretismftw"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center space-x-2"
-        >
-          <img src="/x.png" alt="x" className="w-6 h-6" />
-          My X/Twitter
-        </a>
-      </div>
       <div className="p-6 max-w-2xl w-full">
-        {entries.map((t, i) => (
-          <article key={i} className={i ? "border-t pt-4 mt-4" : ""}>
-            {t}
-          </article>
-        ))}
-      </div>
+        <div>
+          <a
+            href="https://x.com/syncretismftw"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-3 text-gray-200 hover:text-gray-300 text-lg mt-0 transform transition-transform duration-300 hover:scale-105"
+          >
+            <img src="/x.png" alt="x" className="w-6 h-6" />
+            More of my thoughts on X
+          </a>
+        </div>
+      </div>{" "}
     </>
   );
 }
