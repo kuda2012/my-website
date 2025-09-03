@@ -8,14 +8,14 @@ export default function Navbar() {
         {/* <h1 className="text-xl font-bold">Kuda</h1> */}
         <ul className="flex space-x-6">
           <li>
-            <NavLink
+            {/* <NavLink
               to="/"
               className={({ isActive }) =>
                 `hover:text-gray-300 ${isActive ? "underline" : ""}`
               }
             >
               🏠
-            </NavLink>
+            </NavLink> */}
           </li>
           <li>
             <NavLink
