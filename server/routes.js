@@ -161,8 +161,6 @@ router.post('/contact', async (req, res) => {
       html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message.replace(/\n/g, '<br/>')}</p>`,
     });
 
-    console.log('hello', info);
-
     res.json({ ok: true, messageId: info.messageId });
   } catch (err) {
     console.warn(
