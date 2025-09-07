@@ -7,7 +7,7 @@ export default function Navbar() {
       <div className="flex justify-between items-center px-6 py-4">
         {/* <h1 className="text-xl font-bold">Kuda</h1> */}
         <ul className="flex space-x-6">
-          <li>
+          {/* <li>
             <NavLink
               to="/"
               className={({ isActive }) =>
@@ -16,7 +16,7 @@ export default function Navbar() {
             >
               🏠
             </NavLink>
-          </li>
+          </li> */}
           {/* <liv>
             <a
               href="https://x.com/syncretismftw"
@@ -32,10 +32,10 @@ export default function Navbar() {
             <NavLink
               to="/about"
               className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
               }
             >
-              About
+              About me
             </NavLink>
           </li>
           <li>
@@ -43,7 +43,7 @@ export default function Navbar() {
               href="https://chromewebstore.google.com/detail/workdiary/lbjmgndoajjfcodenfoicgenhjphacmp"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-300"
+              className="hover:text-gray-300 whitespace-nowrap"
             >
               Workdiary
             </a>
@@ -52,7 +52,7 @@ export default function Navbar() {
             <NavLink
               to="/thoughts"
               className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
               }
             >
               Thoughts
@@ -72,7 +72,7 @@ export default function Navbar() {
             <NavLink
               to="/contact"
               className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""}`
+                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
               }
             >
               Contact
