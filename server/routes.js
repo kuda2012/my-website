@@ -150,8 +150,6 @@ router.post('/contact', async (req, res) => {
               pass: process.env.SMTP_PASS,
             }
           : undefined,
-      logger: true, // <— add
-      debug: true, // <— add
     });
 
     const info = await transporter.sendMail({
@@ -163,6 +161,8 @@ router.post('/contact', async (req, res) => {
       html: `<p><strong>From:</strong> ${name} (${email})</p><p>${message.replace(/\n/g, '<br/>')}</p>`,
     });
 
+    console.log('hello', info);
+
     res.json({ ok: true, messageId: info.messageId });
   } catch (err) {
     console.warn(
@@ -172,6 +172,45 @@ router.post('/contact', async (req, res) => {
     console.log('[CONTACT FALLBACK]', { name, email, message });
     // Still return success so the UI isn’t blocked in dev
     res.json({ ok: true, fallback: true });
+  }
+});
+
+// ---------------------------
+// Projects
+// ---------------------------
+// GET /api/projects -> list projects (newest first)
+router.get('/projects', async (req, res) => {
+  try {
+    const { rows } = await db.query(
+      `SELECT id, title, body, likes, created_at, updated_at
+       FROM projects
+       ORDER BY updated_at DESC NULLS LAST, id DESC`
+    );
+    res.json(rows);
+  } catch (err) {
+    console.error('Get projects failed:', err);
+    res.status(500).json({ error: 'Failed to fetch projects' });
+  }
+});
+
+// POST /api/projects -> create project
+// body: { title, body }
+router.post('/projects', async (req, res) => {
+  const { title, body } = req.body || {};
+  if (!title || !body) {
+    return res.status(400).json({ error: 'title and body are required' });
+  }
+  try {
+    const { rows } = await db.query(
+      `INSERT INTO projects (title, body)
+       VALUES ($1, $2)
+       RETURNING id, title, body, likes, created_at, updated_at`,
+      [title, body]
+    );
+    return res.status(201).json(rows[0]);
+  } catch (err) {
+    console.error('Create project failed:', err);
+    res.status(500).json({ error: 'Failed to create project' });
   }
 });
 

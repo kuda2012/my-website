@@ -4,7 +4,8 @@ import Navbar from "./Navbar";
 import RuneTicker from "./RuneTicket";
 import WaveTitle from "./WaveTitle";
 import About from "./About";
-import Thoughts from "./Thoughts";
+import ThoughtsList from "./ThoughtsList";
+import Thought from "./Thought";
 import FutureProjects from "./FutureProjects";
 import Contact from "./Contact";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
@@ -66,7 +67,8 @@ function App() {
           <Route path="/" />
           <Route path="/about" element={<About />} />
           {/* Workdiary is an external link; no internal route needed */}
-          <Route path="/thoughts" element={<Thoughts />} />
+          <Route path="/thoughts" element={<ThoughtsList />} />
+          <Route path="/thoughts/:id" element={<Thought />} />
           <Route path="/future-projects" element={<FutureProjects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

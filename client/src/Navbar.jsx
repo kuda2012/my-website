@@ -17,6 +17,17 @@ export default function Navbar() {
               🏠
             </NavLink>
           </li>
+          {/* <liv>
+            <a
+              href="https://x.com/syncretismftw"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center space-x-3 text-gray-200 hover:text-gray-300 text-lg mt-0 transform transition-transform duration-300 hover:scale-105"
+            >
+              Follow me on{" "}
+              <img src="/logo-white.png" alt="x" className="w-4 h-4" />
+            </a>
+          </liv> */}
           <li>
             <NavLink
               to="/about"
