@@ -58,7 +58,7 @@ export default function Navbar() {
               Thoughts
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink
               to="/future-projects"
               className={({ isActive }) =>
@@ -67,7 +67,7 @@ export default function Navbar() {
             >
               Future projects
             </NavLink>
-          </li>
+          </li> */}
           <li>
             <NavLink
               to="/contact"

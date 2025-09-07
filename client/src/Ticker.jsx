@@ -31,7 +31,7 @@ function RuneWaveText({ text }) {
 }
 
 // Horizontal scrolling marquee that sequences 3 separate messages, with pause/play
-function RuneTicker({
+function Ticker({
   messages = [],
   speed = 140,
   paused = false,
@@ -54,12 +54,24 @@ function RuneTicker({
     const vp = vpRef.current;
     const tx = txRef.current;
     if (!vp || !tx) return;
-    xRef.current = vp.clientWidth + 16; // start just off the right edge
+    // Start position depends on viewport size (mobile vs desktop)
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(max-width: 640px)").matches;
+    const multiplier = isMobile ? 1.6 : 1.25; // mobile starts farther off-screen
+    xRef.current = vp.clientWidth * multiplier + 16; // start off the right edge
     tx.style.transform = `translateX(${xRef.current}px)`;
   }, [message]);
 
   // RAF loop to scroll left; when it exits, advance to next message
   useEffect(() => {
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia &&
+      window.matchMedia("(max-width: 640px)").matches;
+    const currentSpeed = isMobile ? speed * 0.7 : speed; // slower on mobile
+
     const step = (now) => {
       const last = lastRef.current;
       const dt = Math.max(0, (now - last) / 1000);
@@ -70,7 +82,7 @@ function RuneTicker({
         if (tx && vp) {
           const w = tx.scrollWidth;
           const btnW = btnRef.current ? btnRef.current.offsetWidth + 8 : 0;
-          xRef.current -= speed * dt;
+          xRef.current -= currentSpeed * dt;
           if (xRef.current + w < -btnW) {
             setIdx((i) => (i + 1) % Math.max(1, messages.length));
           } else {
@@ -114,4 +126,4 @@ function RuneTicker({
     </>
   );
 }
-export default RuneTicker;
+export default Ticker;

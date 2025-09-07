@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Navbar from "./Navbar";
-import RuneTicker from "./RuneTicket";
+import Ticker from "./Ticker";
 import WaveTitle from "./WaveTitle";
 import About from "./About";
 import ThoughtsList from "./ThoughtsList";
@@ -17,7 +17,7 @@ function App() {
   const isHome = location.pathname === "/";
   return (
     <>
-      <RuneTicker
+      <Ticker
         paused={paused}
         onToggle={() =>
           setPaused((p) => {
@@ -29,8 +29,8 @@ function App() {
         messages={[
           "Thisiskuda.com",
           "I am your host, Kuda.",
-          "Please don't tell me I have a cool name lol what do you mean by that 🤔",
-          "Regardless, I think you should stay a while. There's so much we'll get into",
+          "📈 KDM 78.94 ▲",
+          "Hire me nigga",
         ]}
         speed={190}
       />
@@ -38,7 +38,7 @@ function App() {
       {/* <div style={{ height: "44px" }} /> */}
       <div
         id="app"
-        className={`flex flex-col items-center justify-center space-y-7 ${isHome ? "mt-24" : "mt-0"} mr-5`}
+        className={`flex flex-col items-center justify-center space-y-7 ${isHome ? "mt-24" : "mt-0"}`}
       >
         {isHome ? (
           <>
@@ -58,7 +58,7 @@ function App() {
           <Link
             to="/"
             aria-label="Back to home"
-            className="fixed top-8 left-3 text-5xl leading-none select-none text-gray-700 hover:text-gray-600"
+            className="fixed top-10 left-3 text-3xl leading-none select-none text-gray-700 hover:text-gray-600"
           >
             ←
           </Link>
