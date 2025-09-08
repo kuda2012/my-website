@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
 import { getAbout, getStockPrice } from "./Requests"; // <-- adjust path as in your project
-import "./App.css";
 import Navbar from "./Navbar";
 import Ticker from "./Ticker";
 import WaveTitle from "./WaveTitle";
@@ -11,6 +10,7 @@ import ThoughtsList from "./ThoughtsList";
 import Thought from "./Thought";
 import FutureProjects from "./FutureProjects";
 import Contact from "./Contact";
+import "./App.css";
 
 function App() {
   const [paused, setPaused] = useState(false);
@@ -24,7 +24,7 @@ function App() {
     queryClient.prefetchQuery({
       queryKey: ["about"],
       queryFn: getAbout,
-      // keep it fresh for a while so it won't refetch on first open
+      // keep it fresh for a while so it won't re-fetch on first open
       staleTime: 5 * 60 * 1000,
     });
   }, [queryClient]);

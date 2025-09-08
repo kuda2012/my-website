@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
 import React from "react";
+import { Link } from "react-router-dom";
 import { getAbout } from "./Requests";
 import { useQuery } from "@tanstack/react-query";
 
 function About() {
-  const {
-    data: about,
-    isLoading,
-    isError,
-  } = useQuery({
+  const { isLoading, isError } = useQuery({
     queryKey: ["about"],
     queryFn: getAbout,
     staleTime: 60_000,
