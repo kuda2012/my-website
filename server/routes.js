@@ -1,8 +1,48 @@
 // server/routes.js
 const express = require('express');
 const db = require('./db');
+const jwt = require('jsonwebtoken');
+const JWT_SECRET = process.env.JWT_SECRET;
 
 const router = express.Router();
+
+// ---------------------------
+// Auth middleware (JWT + scopes)
+// ---------------------------
+
+// generate-token.js
+
+// const token = jwt.sign(
+//   {
+//     sub: 'kuda', // subject (user id or name)
+//     scopes: ['thoughts:write', 'about:write', 'projects:write'],
+//   },
+//   '27d4af43d7b82871436055c915266bc4', // your JWT_SECRET
+//   { algorithm: 'HS256', expiresIn: '365d' }
+// );
+
+function authMiddleware(req, res, next) {
+  const header = req.headers['authorization'] || '';
+  const [, token] = header.split(' ');
+  if (!token) return res.status(401).json({ error: 'Missing bearer token' });
+  try {
+    const payload = jwt.verify(token, JWT_SECRET, { algorithms: ['HS256'] });
+    req.user = payload; // e.g., { sub, scopes: ['thoughts:write'] }
+    next();
+  } catch (err) {
+    return res.status(401).json({ error: 'Invalid or expired token' });
+  }
+}
+
+function requireScope(required) {
+  return (req, res, next) => {
+    const scopes = Array.isArray(req.user?.scopes) ? req.user.scopes : [];
+    if (!scopes.includes(required)) {
+      return res.status(403).json({ error: 'Insufficient scope' });
+    }
+    next();
+  };
+}
 
 // ---------------------------
 // Thoughts
@@ -24,61 +64,71 @@ router.get('/thoughts', async (req, res) => {
 
 // POST /api/thoughts -> create or update (if id provided)
 // body: { id?, title, body }
-router.post('/thoughts', async (req, res) => {
-  const { id, title, body } = req.body || {};
-  if (!title || !body) {
-    return res.status(400).json({ error: 'title and body are required' });
-  }
-  try {
-    if (id) {
-      const { rows } = await db.query(
-        `UPDATE thoughts
+router.post(
+  '/thoughts',
+  authMiddleware,
+  requireScope('thoughts:write'),
+  async (req, res) => {
+    const { id, title, body } = req.body || {};
+    if (!title || !body) {
+      return res.status(400).json({ error: 'title and body are required' });
+    }
+    try {
+      if (id) {
+        const { rows } = await db.query(
+          `UPDATE thoughts
          SET title = $1, body = $2, updated_at = NOW()
          WHERE id = $3
          RETURNING id, title, body, updated_at`,
+          [title, body, id]
+        );
+        if (rows.length === 0)
+          return res.status(404).json({ error: 'Thought not found' });
+        return res.json(rows[0]);
+      } else {
+        const { rows } = await db.query(
+          `INSERT INTO thoughts (title, body)
+         VALUES ($1, $2)
+         RETURNING id, title, body, updated_at`,
+          [title, body]
+        );
+        return res.status(201).json(rows[0]);
+      }
+    } catch (err) {
+      console.error('Create/update thought failed:', err);
+      res.status(500).json({ error: 'Failed to save thought' });
+    }
+  }
+);
+
+// (Optional) PUT /api/thoughts/:id -> update by id
+router.put(
+  '/thoughts/:id',
+  authMiddleware,
+  requireScope('thoughts:write'),
+  async (req, res) => {
+    const { id } = req.params;
+    const { title, body } = req.body || {};
+    if (!title || !body) {
+      return res.status(400).json({ error: 'title and body are required' });
+    }
+    try {
+      const { rows } = await db.query(
+        `UPDATE thoughts
+       SET title = $1, body = $2, updated_at = NOW()
+       WHERE id = $3
+       RETURNING id, title, body, updated_at`,
         [title, body, id]
       );
       if (rows.length === 0)
         return res.status(404).json({ error: 'Thought not found' });
-      return res.json(rows[0]);
-    } else {
-      const { rows } = await db.query(
-        `INSERT INTO thoughts (title, body)
-         VALUES ($1, $2)
-         RETURNING id, title, body, updated_at`,
-        [title, body]
-      );
-      return res.status(201).json(rows[0]);
+      res.json(rows[0]);
+    } catch (err) {
+      console.error('Update thought failed:', err);
+      res.status(500).json({ error: 'Failed to update thought' });
     }
-  } catch (err) {
-    console.error('Create/update thought failed:', err);
-    res.status(500).json({ error: 'Failed to save thought' });
   }
-});
-
-// (Optional) PUT /api/thoughts/:id -> update by id
-router.put('/thoughts/:id', async (req, res) => {
-  const { id } = req.params;
-  const { title, body } = req.body || {};
-  if (!title || !body) {
-    return res.status(400).json({ error: 'title and body are required' });
-  }
-  try {
-    const { rows } = await db.query(
-      `UPDATE thoughts
-       SET title = $1, body = $2, updated_at = NOW()
-       WHERE id = $3
-       RETURNING id, title, body, updated_at`,
-      [title, body, id]
-    );
-    if (rows.length === 0)
-      return res.status(404).json({ error: 'Thought not found' });
-    res.json(rows[0]);
-  } catch (err) {
-    console.error('Update thought failed:', err);
-    res.status(500).json({ error: 'Failed to update thought' });
-  }
-});
+);
 
 // ---------------------------
 // About Me
@@ -101,24 +151,29 @@ router.get('/about', async (req, res) => {
 
 // POST /api/about -> upsert single about row
 // body: { content }
-router.post('/about', async (req, res) => {
-  const { content } = req.body || {};
-  if (!content) return res.status(400).json({ error: 'content is required' });
-  try {
-    const { rows } = await db.query(
-      `INSERT INTO about_me (id, content, updated_at)
+router.post(
+  '/about',
+  authMiddleware,
+  requireScope('about:write'),
+  async (req, res) => {
+    const { content } = req.body || {};
+    if (!content) return res.status(400).json({ error: 'content is required' });
+    try {
+      const { rows } = await db.query(
+        `INSERT INTO about_me (id, content, updated_at)
        VALUES (1, $1, NOW())
        ON CONFLICT (id)
        DO UPDATE SET content = EXCLUDED.content, updated_at = NOW()
        RETURNING id, content, updated_at`,
-      [content]
-    );
-    res.status(201).json(rows[0]);
-  } catch (err) {
-    console.error('Save about failed:', err);
-    res.status(500).json({ error: 'Failed to save about content' });
+        [content]
+      );
+      res.status(201).json(rows[0]);
+    } catch (err) {
+      console.error('Save about failed:', err);
+      res.status(500).json({ error: 'Failed to save about content' });
+    }
   }
-});
+);
 
 // ---------------------------
 // Contact Me
@@ -193,23 +248,28 @@ router.get('/projects', async (req, res) => {
 
 // POST /api/projects -> create project
 // body: { title, body }
-router.post('/projects', async (req, res) => {
-  const { title, body } = req.body || {};
-  if (!title || !body) {
-    return res.status(400).json({ error: 'title and body are required' });
-  }
-  try {
-    const { rows } = await db.query(
-      `INSERT INTO projects (title, body)
+router.post(
+  '/projects',
+  authMiddleware,
+  requireScope('projects:write'),
+  async (req, res) => {
+    const { title, body } = req.body || {};
+    if (!title || !body) {
+      return res.status(400).json({ error: 'title and body are required' });
+    }
+    try {
+      const { rows } = await db.query(
+        `INSERT INTO projects (title, body)
        VALUES ($1, $2)
        RETURNING id, title, body, likes, created_at, updated_at`,
-      [title, body]
-    );
-    return res.status(201).json(rows[0]);
-  } catch (err) {
-    console.error('Create project failed:', err);
-    res.status(500).json({ error: 'Failed to create project' });
+        [title, body]
+      );
+      return res.status(201).json(rows[0]);
+    } catch (err) {
+      console.error('Create project failed:', err);
+      res.status(500).json({ error: 'Failed to create project' });
+    }
   }
-});
+);
 
 module.exports = router;
