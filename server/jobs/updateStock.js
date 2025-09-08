@@ -2,12 +2,8 @@
 // Run: node server/jobs/updateStock.js
 // Schedules: handled by platform cron (Render Scheduled Job) or system crontab.
 
-try {
+if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
-} catch (err) {
-  console.warn(
-    'dotenv not loaded – likely running on Render where env vars are provided directly.'
-  );
 }
 const db = require('../db'); // must expose db.query(sql, params)
 const MIN = 75;
