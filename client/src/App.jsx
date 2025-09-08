@@ -1,4 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useQueryClient } from "@tanstack/react-query";
+import { Routes, Route, useLocation, Link } from "react-router-dom";
+import { getAbout } from "./Requests"; // <-- adjust path as in your project
 import "./App.css";
 import Navbar from "./Navbar";
 import Ticker from "./Ticker";
@@ -8,13 +11,23 @@ import ThoughtsList from "./ThoughtsList";
 import Thought from "./Thought";
 import FutureProjects from "./FutureProjects";
 import Contact from "./Contact";
-import { Routes, Route, useLocation, Link } from "react-router-dom";
 
 function App() {
   const [paused, setPaused] = useState(false);
   const [waveKey, setWaveKey] = useState(0);
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    queryClient.prefetchQuery({
+      queryKey: ["about"],
+      queryFn: getAbout,
+      // keep it fresh for a while so it won't refetch on first open
+      staleTime: 5 * 60 * 1000,
+    });
+  }, [queryClient]);
+
   return (
     <>
       <Ticker
