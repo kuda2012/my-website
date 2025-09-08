@@ -31,9 +31,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/about"
-              className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
-              }
+              className={() => `hover:text-gray-300 whitespace-nowrap`}
             >
               About me
             </NavLink>
@@ -51,9 +49,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/thoughts"
-              className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
-              }
+              className={() => `hover:text-gray-300 whitespace-nowrap`}
             >
               Thoughts
             </NavLink>
@@ -71,9 +67,7 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/contact"
-              className={({ isActive }) =>
-                `hover:text-gray-300 ${isActive ? "underline" : ""} whitespace-nowrap`
-              }
+              className={() => `hover:text-gray-300 whitespace-nowrap`}
             >
               Contact
             </NavLink>
