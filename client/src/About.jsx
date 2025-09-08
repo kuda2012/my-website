@@ -21,7 +21,7 @@ function About() {
       ) : isError ? (
         <p className="text-red-500">Failed to load about information.</p>
       ) : (
-        <p>{about?.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: about?.content }} />
       )}
       <Link
         to="/contact"
@@ -32,5 +32,4 @@ function About() {
     </div>
   );
 }
-
 export default About;
