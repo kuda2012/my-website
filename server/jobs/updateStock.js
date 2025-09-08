@@ -2,7 +2,13 @@
 // Run: node server/jobs/updateStock.js
 // Schedules: handled by platform cron (Render Scheduled Job) or system crontab.
 
-require('dotenv').config();
+try {
+  require('dotenv').config();
+} catch (err) {
+  console.warn(
+    'dotenv not loaded – likely running on Render where env vars are provided directly.'
+  );
+}
 const db = require('../db'); // must expose db.query(sql, params)
 const MIN = 75;
 const MAX = 94;
