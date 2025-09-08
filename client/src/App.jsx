@@ -43,7 +43,7 @@ function App() {
               <WaveTitle key={waveKey} text="Kuda" />
             )}
             <img
-              src="/selfie.jpeg"
+              src="/selfie.jpg"
               alt="Logo"
               className="w-64 h-90 rounded-md"
             />
