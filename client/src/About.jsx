@@ -32,13 +32,14 @@ function About() {
           </p>
           <p className="about-me text-sm">
             I made this website so I can be findable. We live in an age where
-            matching people for jobs and relationships is broken. The
-            fundamental issue is that it is very difficult to create an online
-            representation of yourself that genuinely represents the aspects of
-            your being that would translate to being a good match for a
-            situation in the real world. This is my my best attempt of give you
-            a glimpse into my soul so I can transcend the 1000 people in your
-            queue that are interested in whatever you are offering online.
+            the process for matching people with the jobs and relationships that
+            they deserve is broken. The issue is that it is very difficult to
+            create an online representation of yourself that genuinely
+            represents the aspects of your being that would translate to being a
+            good match for a situation in the real world. Thus, this is my my
+            best attempt of give you a glimpse into my soul so I can transcend
+            the 1000 people in your queue that are interested in whatever you
+            are offering online.
           </p>
           <p className="about-me text-sm">
             If you are interested in hiring me, or just want to reach out, see

@@ -31,7 +31,9 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/about"
-              className={() => `hover:text-gray-300 whitespace-nowrap`}
+              className={() =>
+                `text-[#b3b7ff] hover:text-gray-300 whitespace-nowrap `
+              }
             >
               About me
             </NavLink>
@@ -41,7 +43,7 @@ export default function Navbar() {
               href="https://chromewebstore.google.com/detail/workdiary/lbjmgndoajjfcodenfoicgenhjphacmp"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-gray-300 whitespace-nowrap"
+              className="text-[#b3b7ff] hover:text-gray-300 whitespace-nowrap"
             >
               Workdiary
             </a>
@@ -49,7 +51,9 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/thoughts"
-              className={() => `hover:text-gray-300 whitespace-nowrap`}
+              className={() =>
+                `text-[#b3b7ff] hover:text-gray-300 whitespace-nowrap`
+              }
             >
               Thoughts
             </NavLink>
@@ -67,7 +71,9 @@ export default function Navbar() {
           <li>
             <NavLink
               to="/contact"
-              className={() => `hover:text-gray-300 whitespace-nowrap`}
+              className={() =>
+                `text-[#b3b7ff] hover:text-gray-300 whitespace-nowrap`
+              }
             >
               Contact
             </NavLink>
