@@ -29,6 +29,7 @@ function Contact() {
     <>
       <div className="pt-10">
         <div>What's up? Shoot me an email and I'll get back to you.</div>
+
         <form className="p-6 max-w-xl space-y-4 w-full" onSubmit={handleSubmit}>
           <input
             name="name"
