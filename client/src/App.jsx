@@ -26,12 +26,7 @@ function App() {
             return next;
           })
         }
-        messages={[
-          "Thisiskuda.com",
-          "I am your host, Kuda.",
-          "📈 KDM 78.94 ▲",
-          "Hire me nigga",
-        ]}
+        messages={["Thisiskuda.com", "I am your host, Kuda.", "📈 KDM 78.94 ▲"]}
         speed={190}
       />
       {/* Spacer so content doesn't hide under fixed bar */}
