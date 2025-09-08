@@ -272,4 +272,24 @@ router.post(
   }
 );
 
+// GET /api/stock -> latest stock price for symbol 'KDM'
+router.get('/stock', async (req, res) => {
+  try {
+    const { rows } = await db.query(
+      `SELECT price
+       FROM stock_prices
+       WHERE symbol = 'KDM'
+       ORDER BY created_at DESC
+       LIMIT 1`
+    );
+    if (rows.length === 0) {
+      return res.json({ price: null });
+    }
+    res.json({ price: rows[0].price });
+  } catch (err) {
+    console.error('Get stock price failed:', err);
+    res.status(500).json({ error: 'Failed to fetch stock price' });
+  }
+});
+
 module.exports = router;

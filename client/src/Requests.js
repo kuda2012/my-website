@@ -44,6 +44,14 @@ export async function getProjects() {
 }
 
 // -----------------------------
+// Stock Price
+// -----------------------------
+export async function getStockPrice() {
+  const res = await api.get("/stock");
+  return res.data.price; // { price: number }
+}
+
+// -----------------------------
 // Contact Me
 // -----------------------------
 /**
@@ -79,4 +87,5 @@ export default {
   sendContact,
   tryCall,
   getProjects,
+  getStockPrice,
 };

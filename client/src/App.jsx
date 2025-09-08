@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQueryClient } from "@tanstack/react-query";
 import { Routes, Route, useLocation, Link } from "react-router-dom";
-import { getAbout } from "./Requests"; // <-- adjust path as in your project
+import { getAbout, getStockPrice } from "./Requests"; // <-- adjust path as in your project
 import "./App.css";
 import Navbar from "./Navbar";
 import Ticker from "./Ticker";
@@ -15,6 +15,7 @@ import Contact from "./Contact";
 function App() {
   const [paused, setPaused] = useState(false);
   const [waveKey, setWaveKey] = useState(0);
+  const [stockPrice, setStockPrice] = useState(null);
   const location = useLocation();
   const isHome = location.pathname === "/";
   const queryClient = useQueryClient();
@@ -28,6 +29,11 @@ function App() {
     });
   }, [queryClient]);
 
+  useEffect(() => {
+    getStockPrice()
+      .then((price) => setStockPrice(price))
+      .catch(() => setStockPrice(null));
+  }, []);
   return (
     <>
       <Ticker
@@ -39,7 +45,13 @@ function App() {
             return next;
           })
         }
-        messages={["Thisiskuda.com", "I am your host, Kuda.", "📈 KDM 78.94 ▲"]}
+        messages={[
+          "Thisiskuda.com",
+          "I am your host, Kuda.",
+          stockPrice !== null
+            ? `📈 KDM ${Number(stockPrice).toFixed(2)} ▲`
+            : "Loading...",
+        ]}
         speed={190}
       />
       {/* Spacer so content doesn't hide under fixed bar */}
