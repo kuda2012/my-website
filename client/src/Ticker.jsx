@@ -31,12 +31,7 @@ function RuneWaveText({ text }) {
 }
 
 // Horizontal scrolling marquee that sequences 3 separate messages, with pause/play
-function Ticker({
-  messages = [],
-  speed = 140,
-  paused = false,
-  onToggle = () => {},
-}) {
+function Ticker({ messages = [], paused = false, onToggle = () => {} }) {
   const [idx, setIdx] = useState(0);
   const vpRef = useRef(null);
   const txRef = useRef(null);
@@ -46,7 +41,11 @@ function Ticker({
   const lastRef = useRef(
     typeof performance !== "undefined" ? performance.now() : Date.now()
   );
-
+  const isMobile =
+    typeof window !== "undefined" &&
+    window.matchMedia &&
+    window.matchMedia("(max-width: 640px)").matches;
+  const speed = isMobile ? 130 : 190;
   const message = messages[idx] || "";
 
   // Initialize starting X whenever the message changes
@@ -55,11 +54,8 @@ function Ticker({
     const tx = txRef.current;
     if (!vp || !tx) return;
     // Start position depends on viewport size (mobile vs desktop)
-    const isMobile =
-      typeof window !== "undefined" &&
-      window.matchMedia &&
-      window.matchMedia("(max-width: 640px)").matches;
-    const multiplier = isMobile ? 1.6 : 1.0; // mobile starts farther off-screen
+
+    const multiplier = isMobile ? 1.7 : 1.0; // mobile starts farther off-screen
     xRef.current = vp.clientWidth * multiplier + 16; // start off the right edge
     tx.style.transform = `translateX(${xRef.current}px)`;
   }, [message]);
