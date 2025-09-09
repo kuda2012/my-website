@@ -23,12 +23,13 @@ function About() {
           {/* <p className="about-me text-sm md:text-md"> */}
           <p className="about-me text-sm">
             I believe that I am one of the most spiritually in tune, handsome,
-            empathetic, intelligent people on earth. I am not the best at any
-            one of these, but having high levels of these in combination is what
-            sets me apart. This is the result of good genetics combined with the
-            humble upbringing of being a late bloomer. Having experienced both
-            ends of the loser-winner spectrum, I feel that it is impossible for
-            me to ever forget my roots, no matter how high I climb.
+            empathetic, intelligent people on earth. I am not the highest ranked
+            at any one of these, but having high levels of these in combination
+            is what sets me apart. This is the result of good genetics combined
+            with the humble upbringing of being a late bloomer. Having
+            experienced both ends of the loser-winner spectrum, I feel that it
+            is impossible for me to ever forget my roots, no matter how high I
+            climb.
           </p>
           <p className="about-me text-sm">
             I made this website so I can be findable. We live in an age where
