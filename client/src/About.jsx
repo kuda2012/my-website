@@ -18,39 +18,42 @@ function About() {
         <p className="text-red-500">Failed to load about information.</p>
       ) : (
         <>
+          <p>Howdy</p>
           {/* <div dangerouslySetInnerHTML={{ __html: about?.content }} /> */}
           {/* <p className="about-me text-sm md:text-md"> */}
           <p className="about-me text-sm">
             I believe that I am one of the most spiritually in tune, good
             looking, empathetic, intelligent people on earth. I am not the best
-            at any one of these characteristics, but having high levels of all
-            these inconjunction is what sets me apart. This is the result of
-            good genetics combined with the humble upbringing of being a late
-            bloomer. Having experienced both ends of the loser-winner spectrum,
-            I feel that is impossible for me to ever forget my roots, no matter
-            how high I climb.
+            at any one of these, but having high levels of these in combination
+            is what sets me apart. This is the result of good genetics combined
+            with the humble upbringing of being a late bloomer. Having
+            experienced both ends of the loser-winner spectrum, I feel that it
+            is impossible for me to ever forget my roots, no matter how high I
+            climb.
           </p>
           <p className="about-me text-sm">
             I made this website so I can be findable. We live in an age where
             the process for matching people with the jobs and relationships that
-            they deserve is broken. The issue is that it is very difficult to
-            create an online representation of yourself that genuinely
-            represents the aspects of your being that would translate to being a
-            good match for a situation in the real world. Thus, this is my my
-            best attempt of give you a glimpse into my soul so I can transcend
-            the 1000 people in your queue that are interested in whatever you
-            are offering online.
+            they deserve has broken. The issue is that there's simply too much
+            noise in the onine process for someone to be certain that the choice
+            they are making will translate to real life well, so people have no
+            choice but to reduce the dimensions of their selection process.
+            Often leaning heavily on material factors without being able to
+            sniff out the intangibles. Thus, this website is my attempt to readd
+            some of the dimensionality that would have been lost if I was just a
+            mere bidder sitting in an "has applied" queue for whatever you may
+            be offering online.
           </p>
           <p className="about-me text-sm">
             If you are interested in hiring me, or just want to reach out, see
             the Contact form link below. I am a Software engineer by trade, with
             my proof of work being this website, the Workdiary project on the
             frontpage, and my overall good taste across many different avenues
-            of life. Cheers.
+            of life.
           </p>
+          <p>Cheers.</p>
         </>
       )}
-
       <Link
         to="/contact"
         className="inline-block text-green-400 visited:text-green-400 hover:text-green-300 cursor-pointer"

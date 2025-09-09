@@ -24,7 +24,7 @@ function App() {
     queryClient.prefetchQuery({
       queryKey: ["about"],
       queryFn: getAbout,
-      // keep it fresh for a while so it won't re-fetch on first open
+      // keep it fresh for a while so it won't refetch on first open
       staleTime: 5 * 60 * 1000,
     });
   }, [queryClient]);
