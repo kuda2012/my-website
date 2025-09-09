@@ -46,10 +46,17 @@ function About() {
           </p>
           <p className="about-me text-sm">
             If you are interested in hiring me, or just want to reach out, see
-            the Contact form link below. I am a Software engineer by trade, with
-            my proof of work being this website, the Workdiary project on the
-            frontpage, and my overall good taste across many different avenues
-            of life.
+            the Contact link below. I am a Software engineer by trade, with my
+            proof of work being this website, the{" "}
+            <a
+              href="https://chromewebstore.google.com/detail/workdiary/lbjmgndoajjfcodenfoicgenhjphacmp"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+            >
+              Workdiary chrome extension clickable here
+            </a>
+            , and my overall good taste across many different avenues of life.
           </p>
           <p>Cheers.</p>
         </>

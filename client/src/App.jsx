@@ -84,9 +84,8 @@ function App() {
           </Link>
         )}
         <Routes>
-          <Route path="/" />
+          <Route path="/" element={<></>} />
           <Route path="/about" element={<About />} />
-          {/* Workdiary is an external link; no internal route needed */}
           <Route path="/thoughts" element={<ThoughtsList />} />
           <Route path="/thoughts/:id" element={<Thought />} />
           <Route path="/future-projects" element={<FutureProjects />} />
