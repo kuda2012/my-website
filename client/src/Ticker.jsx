@@ -59,7 +59,7 @@ function Ticker({
       typeof window !== "undefined" &&
       window.matchMedia &&
       window.matchMedia("(max-width: 640px)").matches;
-    const multiplier = isMobile ? 1.6 : 1.25; // mobile starts farther off-screen
+    const multiplier = isMobile ? 1.6 : 1.0; // mobile starts farther off-screen
     xRef.current = vp.clientWidth * multiplier + 16; // start off the right edge
     tx.style.transform = `translateX(${xRef.current}px)`;
   }, [message]);
