@@ -1,4 +1,3 @@
-// WaveTitle.jsx
 import React from "react";
 import "./WaveTitle.css";
 

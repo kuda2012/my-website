@@ -1,25 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-
-// Styles that mimic the RuneScape chat vibe
-const RuneStyles = () => (
-  <style>{`
-    .rs-ticker-bar {
-      position: fixed; inset: 0 0 auto 0; z-index: 50;
-      display: flex; align-items: center;
-      padding: .35rem .75rem; background: #000000cc; backdrop-filter: blur(2px);
-      border-bottom: 1px solid #111; box-shadow: 0 1px 0 rgba(255,255,255,.06) inset;
-      /* make room for the overlaid button on the left */
-      padding-left: 2.25rem; /* ~button width */
-    }
-    .rs-toggle { position:absolute; left:.5rem; top:50%; transform:translateY(-50%);
-      font-size: 12px; padding: .2rem .45rem; border-radius: 4px; background: #222; color: #fff; border: 1px solid #333; z-index: 2; }
-    .rs-toggle:hover { background: #2c2c2c; }
-    .rs-viewport { position: relative; overflow: hidden; white-space: nowrap; flex: 1; }
-    .rs-text { display: inline-block; will-change: transform; color:#ff0; text-shadow: 1px 1px 0 #000; font-family: 'runescape_chat_bold_07regular', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; }
-    /* When this class is on a wrapper, pause all CSS animations inside it */
-    .anim-paused * { animation-play-state: paused !important; transition-property: none !important; }
-  `}</style>
-);
+import { useEffect, useRef, useState } from "react";
+import "./Ticker.css";
 
 // Split a string into span elements with staggered negative delays like the CodePen's SCSS mixin
 function RuneWaveText({ text }) {
@@ -94,7 +74,6 @@ function Ticker({ messages = [], paused = false, onToggle = () => {} }) {
 
   return (
     <>
-      <RuneStyles />
       <div
         className="rs-ticker-bar"
         role="region"

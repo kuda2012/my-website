@@ -2,8 +2,6 @@ import React from "react";
 import { QueryClient, useQuery } from "@tanstack/react-query";
 import { getProjects } from "./Requests";
 
-const queryClient = new QueryClient();
-
 function FutureProjectsContent() {
   const {
     data: projects = [],
