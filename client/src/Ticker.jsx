@@ -4,7 +4,7 @@ import "./Ticker.css";
 // Split a string into span elements with staggered negative delays like the CodePen's SCSS mixin
 function RuneWaveText({ text }) {
   return (
-    <span className="rs-text" aria-label={text}>
+    <span className="rs-text !text-yellow-300" aria-label={text}>
       {text}
     </span>
   );

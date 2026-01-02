@@ -11,17 +11,17 @@ function About() {
   });
 
   return (
-    <div className="p-6 space-y-4 max-w-2xl text-center">
+    <div className="p-6 space-y-4 max-w-2xl text-center text-gray-300">
       {isLoading ? (
         <p>Loading…</p>
       ) : isError ? (
         <p className="text-red-500">Failed to load about information.</p>
       ) : (
         <>
-          <p>Howdy</p>
-          {/* <div dangerouslySetInnerHTML={{ __html: about?.content }} /> */}
-          {/* <p className="about-me text-sm md:text-md"> */}
-          <p className="about-me text-sm">
+          <h2 className="text-3xl font-semibold text-stone-900 inline-block px-3 py-1 rounded">
+            Howdy
+          </h2>
+          <p className="about-me text-sm !text-yellow-300">
             I believe that I am one of the most spiritually in tune, handsome,
             empathetic, intelligent people on earth. I am not the highest ranked
             at any one of these, but having high levels of these in combination
@@ -31,7 +31,7 @@ function About() {
             is impossible for me to ever forget my roots, no matter how high I
             climb.
           </p>
-          <p className="about-me text-sm">
+          <p className="about-me text-sm !text-yellow-300">
             I made this website so I can be findable. We live in an age where
             the process for matching people with the jobs and relationships that
             they deserve has broken. The issue is that there's simply too much
@@ -44,7 +44,7 @@ function About() {
             mere bidder sitting in an "has applied" queue for whatever you may
             be offering online.
           </p>
-          <p className="about-me text-sm">
+          <p className="about-me text-sm !text-yellow-300">
             If you are interested in hiring me, or just want to reach out, see
             the Contact link below. I am a Software engineer by trade, with my
             proof of work being this website, the{" "}
@@ -52,18 +52,18 @@ function About() {
               href="https://chromewebstore.google.com/detail/workdiary/lbjmgndoajjfcodenfoicgenhjphacmp"
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:underline"
+              className="hover:underline !text-yellow-300"
             >
               Workdiary chrome extension clickable here
             </a>
             , and my overall good taste across many different avenues of life.
           </p>
-          <p>Cheers.</p>
+          <p className="about-me text-sm !text-yellow-300">Cheers.</p>
         </>
       )}
       <Link
         to="/contact"
-        className="inline-block text-green-400 visited:text-green-400 hover:text-green-300 cursor-pointer"
+        className="inline-block pt-2 text-green-400 visited:text-stone-900 hover:text-green-300 cursor-pointer"
       >
         Contact me
       </Link>
