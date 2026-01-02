@@ -3,6 +3,7 @@ import "./WaveTitle.css";
 
 const WaveTitle = ({ text }) => {
   return (
+    // <h1 className="wave-title !text-yellow-300">
     <h1 className="wave-title">
       {text.split("").map((char, i) => (
         <span key={i} style={{ animationDelay: `${i * 0.1}s` }}>

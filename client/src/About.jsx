@@ -21,7 +21,7 @@ function About() {
           <h2 className="text-3xl font-semibold text-stone-900 inline-block px-3 py-1 rounded">
             Howdy
           </h2>
-          <p className="about-me text-sm !text-yellow-300">
+          <p className="about-me text-sm !text-yellow-200">
             I believe that I am one of the most spiritually in tune, handsome,
             empathetic, intelligent people on earth. I am not the highest ranked
             at any one of these, but having high levels of these in combination
@@ -31,7 +31,7 @@ function About() {
             is impossible for me to ever forget my roots, no matter how high I
             climb.
           </p>
-          <p className="about-me text-sm !text-yellow-300">
+          <p className="about-me text-sm !text-yellow-200">
             I made this website so I can be findable. We live in an age where
             the process for matching people with the jobs and relationships that
             they deserve has broken. The issue is that there's simply too much
@@ -44,7 +44,7 @@ function About() {
             mere bidder sitting in an "has applied" queue for whatever you may
             be offering online.
           </p>
-          <p className="about-me text-sm !text-yellow-300">
+          <p className="about-me text-sm !text-yellow-200">
             If you are interested in hiring me, or just want to reach out, see
             the Contact link below. I am a Software engineer by trade, with my
             proof of work being this website, the{" "}
@@ -58,7 +58,7 @@ function About() {
             </a>
             , and my overall good taste across many different avenues of life.
           </p>
-          <p className="about-me text-sm !text-yellow-300">Cheers.</p>
+          <p className="about-me text-sm !text-yellow-200">Cheers.</p>
         </>
       )}
       <Link
